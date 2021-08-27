@@ -1,13 +1,15 @@
 import React from "react";
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const HeaderMenuComponent: React.FC = () => {
+	const location = useLocation();
 	const menuItems = [
-		{ key: "home", text: "Home", url: "/" },
-		{ key: "about-us", text: "About Us", url: "/about-us" },
-		{ key: "blog", text: "Blog", url: "/blog" },
-		{ key: "contact-us", text: "Contact Us", url: "/contact-us" },
+		{ key: "/", text: "Home", url: "/" },
+		{ key: "/about-us", text: "About Us", url: "/about-us" },
+		{ key: "/blog", text: "Blog", url: "/blog" },
+		{ key: "/contact-us", text: "Contact Us", url: "/contact-us" },
+		{ key: "/login", text: "Login", url: "/login" },
 	];
 
 	const RenderMenuItems = menuItems?.map(({ key, text, url }) => (
@@ -17,7 +19,11 @@ const HeaderMenuComponent: React.FC = () => {
 	));
 
 	return (
-		<Menu className="header__menu" mode={"horizontal"}>
+		<Menu
+			className="header__menu"
+			mode={"horizontal"}
+			activeKey={location.pathname}
+		>
 			{RenderMenuItems}
 		</Menu>
 	);

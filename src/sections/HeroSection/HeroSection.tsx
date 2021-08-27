@@ -4,7 +4,7 @@ import HeroImage from "../../assets/images/logo.png";
 
 const HeroSection: React.FC = () => {
 	return (
-		<div className="section hero__section">
+		<section className="section hero__section">
 			<div className="container">
 				<div className="hero__section__content">
 					<Row className="content_wrapper">
@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
 					</Row>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 
