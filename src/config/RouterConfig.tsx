@@ -1,4 +1,5 @@
 import React from "react";
+import Register from "../views/app_pages/auth/Register";
 import PageNotFound from "../views/errors/PageNotFound";
 import Unauthorized from "../views/errors/Unauthorized";
 import HomePage from "../views/front_pages/HomePage";
@@ -9,6 +10,12 @@ const RouterConfig: RouterConfigProps[] = [
 		title: "Home Page",
 		path: "/",
 		component: <HomePage />,
+		settings: ["Header", "Footer"],
+	},
+	{
+		title: "Register Page",
+		path: "/register",
+		component: <Register />,
 		settings: ["Header", "Footer"],
 	},
 	{

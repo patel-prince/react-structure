@@ -10,6 +10,7 @@ const HeaderMenuComponent: React.FC = () => {
 		{ key: "/blog", text: "Blog", url: "/blog" },
 		{ key: "/contact-us", text: "Contact Us", url: "/contact-us" },
 		{ key: "/login", text: "Login", url: "/login" },
+		{ key: "/register", text: "Register", url: "/register" },
 	];
 
 	const RenderMenuItems = menuItems?.map(({ key, text, url }) => (
