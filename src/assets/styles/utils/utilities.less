@@ -23,7 +23,7 @@
 /* Create Width Hadling Classes */
 
 .Fun_widthPercentLoop (@i) when (@i > 0) {
-	.span_@{i} {
+	.span-@{i} {
 		width: ~"@{i}%";
 	}
 	.Fun_widthPercentLoop(@i - 5);
@@ -31,7 +31,7 @@
 .Fun_widthPercentLoop(100);
 
 .Fun_widthBigPixel (@i) when (@i > 500) {
-	.width_@{i} {
+	.width-@{i} {
 		width: ~"@{i}px";
 		max-width: 100%;
 	}
@@ -40,7 +40,7 @@
 .Fun_widthBigPixel(1000);
 
 .Fun_widthSmallPixel (@i) when (@i > 0) {
-	.width_@{i} {
+	.width-@{i} {
 		width: ~"@{i}px";
 		max-width: 100%;
 	}

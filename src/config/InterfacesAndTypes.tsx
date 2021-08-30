@@ -1,3 +1,6 @@
+import { FormItemProps, InputProps } from "antd";
+import { Rule } from "antd/lib/form";
+
 export type RouterSettingsType =
 	| "Header"
 	| "Footer"
@@ -11,4 +14,14 @@ export interface RouterConfigProps {
 	settings?: RouterSettingsType[]; // Optional
 	exact?: boolean; // Optional: By default it is considered as false
 	auth?: boolean; // Optional: By default it is considered as false
+}
+
+export interface InputBoxProps
+	extends FormItemProps,
+		Omit<InputProps, "name" | "children" | "onReset"> {
+	options?: string;
+}
+
+export interface RequestProps {
+	[key: string]: Rule[];
 }
