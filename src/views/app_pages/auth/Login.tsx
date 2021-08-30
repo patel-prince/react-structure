@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Divider, Form, Space } from "antd";
 import { LoginRequest } from "../../../requests/AuthRequest";
 import FormBox, { InputBox } from "../../../components/FormBox";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import useStore from "../../../store";
 
 const Login: React.FC = () => {
 	const [form] = Form.useForm();
+	const [saving, setSaving] = useState<boolean>(false);
+	const history = useHistory();
+	const { AUTH, ROOT } = useStore();
+	const { doLogin } = AUTH;
+	const { AssignErrorToInput } = ROOT;
 
 	const handleSubmit = (data: any) => {
-		console.log(data);
+		setSaving(true);
+		doLogin(data)
+			.then(() => {
+				history.replace("/dashboard");
+			})
+			.catch((e: any) => {
+				AssignErrorToInput(form, e?.errors);
+			})
+			.finally(() => setSaving(false));
 	};
 
 	return (
@@ -34,6 +48,7 @@ const Login: React.FC = () => {
 					/>
 					<Button
 						className="width-150"
+						loading={saving}
 						type="primary"
 						size="large"
 						htmlType="submit"

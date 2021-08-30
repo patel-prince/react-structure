@@ -4,12 +4,15 @@ import { RegisterRequest } from "../../../requests/AuthRequest";
 import Config from "../../../config/Config";
 import FormBox, { InputBox } from "../../../components/FormBox";
 import { Link } from "react-router-dom";
+import useStore from "../../../store";
 
 const Register: React.FC = () => {
 	const [form] = Form.useForm();
+	const { AUTH } = useStore();
+	const { doRegister } = AUTH;
 
 	const handleSubmit = (data: any) => {
-		console.log(data);
+		doRegister(data);
 	};
 
 	return (
