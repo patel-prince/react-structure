@@ -1,10 +1,10 @@
 import React from "react";
 import { Layout } from "antd";
-import HeaderLogoComponent from "./components/HeaderLogoComponent";
-import HeaderMenuComponent from "./components/HeaderMenuComponent";
+import HeaderLogoComponent from "../components/LogoComponent";
+import HeaderMenuComponent from "../components/HeaderMenuComponent";
 
 interface HeaderViewProps {
-	visible: boolean;
+	visible?: boolean;
 }
 
 const HeaderView: React.FC<HeaderViewProps> = ({ visible }) => {

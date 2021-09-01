@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Col, Divider, Form, Row, Space } from "antd";
 import { RegisterRequest } from "../../../requests/AuthRequest";
 import Config from "../../../config/Config";
 import FormBox, { InputBox } from "../../../components/FormBox";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useStore from "../../../store";
+import { ErrorProps } from "../../../store/RootStore/RootInterface";
 
 const Register: React.FC = () => {
 	const [form] = Form.useForm();
-	const { AUTH } = useStore();
+	const history = useHistory();
+
+	const [saving, setSaving] = useState<boolean>(false);
+
+	const { AUTH, ROOT } = useStore();
 	const { doRegister } = AUTH;
+	const { AssignErrorToInput } = ROOT;
 
 	const handleSubmit = (data: any) => {
-		doRegister(data);
+		setSaving(true);
+		doRegister(data)
+			.then(() => {
+				history.push("/resend-verification-link");
+			})
+			.catch((e: ErrorProps) => {
+				AssignErrorToInput(form, e?.errors);
+			})
+			.finally(() => setSaving(false));
 	};
 
 	return (
@@ -57,6 +71,7 @@ const Register: React.FC = () => {
 						rules={RegisterRequest.password}
 					/>
 					<Button
+						loading={saving}
 						className="width-150"
 						type="primary"
 						size="large"

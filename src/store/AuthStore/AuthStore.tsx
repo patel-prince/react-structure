@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import axios from "axios";
 import { doLoginType, doRegisterType, userType } from "./AuthInterface";
 import RootStore from "../RootStore/RootStore";
@@ -9,12 +9,27 @@ export default class AuthStore {
 	public user?: userType;
 	public token?: string;
 	public app_loading: boolean;
+	public email?: string;
 	private rootStore: RootStore;
 
 	constructor() {
 		this.app_loading = true;
 		this.rootStore = new RootStore();
-		makeAutoObservable(this);
+		makeObservable(this, {
+			user: observable,
+			token: observable,
+			app_loading: observable,
+			email: observable,
+			InitializeApp: action,
+			SetupHeaders: action,
+			setUser: action,
+			setToken: action,
+			setAppLoading: action,
+			setEmail: action,
+			doLogin: action,
+			doRegister: action,
+			fetchAuthUser: action,
+		});
 	}
 
 	// Initiate Application Functions
@@ -50,6 +65,9 @@ export default class AuthStore {
 	public setAppLoading = (value: boolean): void => {
 		this.app_loading = value;
 	};
+	public setEmail = (value: string): void => {
+		this.email = value;
+	};
 
 	// API Functions
 	public doLogin = (payload: doLoginType): Promise<any> => {
@@ -57,6 +75,7 @@ export default class AuthStore {
 			.post(API_URL.LOGIN_WITH_EMAIL(), payload)
 			.then(({ data }) => {
 				this.SetupHeaders(data.access_token);
+				return data;
 			})
 			.catch(({ data }) => {
 				this.setToken();
@@ -65,11 +84,13 @@ export default class AuthStore {
 			});
 	};
 
-	public doRegister = (data: doRegisterType): void => {
-		axios.post(API_URL.REGISTER_WITH_EMAIL(), data).then();
+	public doRegister = (payload: doRegisterType): Promise<any> => {
+		return axios.post(API_URL.REGISTER_WITH_EMAIL(), payload).then(() => {
+			this.setEmail(payload.email);
+		});
 	};
 
-	fetchAuthUser = (): Promise<any> => {
+	public fetchAuthUser = (): Promise<any> => {
 		return axios
 			.get(API_URL.ME())
 			.then(({ data }) => {

@@ -4,6 +4,7 @@ import { LoginRequest } from "../../../requests/AuthRequest";
 import FormBox, { InputBox } from "../../../components/FormBox";
 import { Link, useHistory } from "react-router-dom";
 import useStore from "../../../store";
+import { ErrorProps } from "../../../store/RootStore/RootInterface";
 
 const Login: React.FC = () => {
 	const [form] = Form.useForm();
@@ -19,10 +20,10 @@ const Login: React.FC = () => {
 			.then(() => {
 				history.replace("/dashboard");
 			})
-			.catch((e: any) => {
+			.catch((e: ErrorProps) => {
 				AssignErrorToInput(form, e?.errors);
-			})
-			.finally(() => setSaving(false));
+				setSaving(false);
+			});
 	};
 
 	return (

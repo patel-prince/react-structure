@@ -1,14 +1,47 @@
 .main__page__wrapper {
 	&.has__header {
-		.main_page__content {
+		.main__page__content {
 			padding-top: @layout-header-height;
 		}
 	}
-	&.has_sidebar {
-		.main_page__content {
+	&.has__appsidebar {
+		.main__page__content {
+			display: flex;
+			flex-direction: column;
 			background-color: @layout-content-background;
 		}
 	}
+}
+
+.logo__wrapper {
+	height: @logo-height;
+	display: flex;
+	align-items: center;
+	img {
+		max-height: 100%;
+		max-width: 100%;
+
+		& + span {
+			margin-left: @logo-space;
+		}
+	}
+	span {
+		white-space: nowrap;
+		font-size: @logo-text-size;
+		font-weight: bold;
+		color: @text-color;
+	}
+}
+
+.fullscreen__spinner__wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
 }
 
 .section {

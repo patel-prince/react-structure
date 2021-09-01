@@ -30,7 +30,8 @@ const RouterConfig: RouterConfigProps[] = [
 		title: "Dashboard Page",
 		path: "/dashboard",
 		component: <Dashboard />,
-		settings: ["Header", "Footer"],
+		settings: ["AppHeader", "AppSidebar"],
+		auth: true,
 	},
 	{
 		title: "Unauthorized",
