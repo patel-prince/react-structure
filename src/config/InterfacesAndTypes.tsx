@@ -25,3 +25,17 @@ export interface InputBoxProps
 export interface RequestProps {
 	[key: string]: Rule[];
 }
+
+export type BreadcrumbComponentItemTypes = {
+	name: React.ReactNode;
+	link?: string;
+};
+
+export interface BreadcrumbComponentProps {
+	items: BreadcrumbComponentItemTypes[];
+}
+
+export interface BreadcrumbConfigProps {
+	title: string;
+	path: BreadcrumbComponentItemTypes[];
+}

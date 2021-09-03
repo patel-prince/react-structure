@@ -72,7 +72,7 @@ export default class AuthStore {
 	// API Functions
 	public doLogin = (payload: doLoginType): Promise<any> => {
 		return axios
-			.post(API_URL.LOGIN_WITH_EMAIL(), payload)
+			.post(API_URL.LOGIN_WITH_EMAIL, payload)
 			.then(({ data }) => {
 				this.SetupHeaders(data.access_token);
 				return data;
@@ -85,14 +85,14 @@ export default class AuthStore {
 	};
 
 	public doRegister = (payload: doRegisterType): Promise<any> => {
-		return axios.post(API_URL.REGISTER_WITH_EMAIL(), payload).then(() => {
+		return axios.post(API_URL.REGISTER_WITH_EMAIL, payload).then(() => {
 			this.setEmail(payload.email);
 		});
 	};
 
 	public fetchAuthUser = (): Promise<any> => {
 		return axios
-			.get(API_URL.ME())
+			.get(API_URL.ME)
 			.then(({ data }) => {
 				this.setUser(data.user);
 				return data;

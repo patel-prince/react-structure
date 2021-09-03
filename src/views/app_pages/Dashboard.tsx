@@ -1,7 +1,8 @@
+import { PageHeader } from "antd";
 import React from "react";
 
 const Dashboard: React.FC = () => {
-	return <div>Dashboard Page</div>;
+	return <PageHeader title="Dashboard" />;
 };
 
 export default Dashboard;

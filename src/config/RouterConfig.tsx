@@ -2,6 +2,7 @@ import React from "react";
 import Login from "../views/app_pages/auth/Login";
 import Register from "../views/app_pages/auth/Register";
 import Dashboard from "../views/app_pages/Dashboard";
+import UserView from "../views/app_pages/UserManagement/UserView";
 import PageNotFound from "../views/errors/PageNotFound";
 import Unauthorized from "../views/errors/Unauthorized";
 import HomePage from "../views/front_pages/HomePage";
@@ -30,6 +31,13 @@ const RouterConfig: RouterConfigProps[] = [
 		title: "Dashboard Page",
 		path: "/dashboard",
 		component: <Dashboard />,
+		settings: ["AppHeader", "AppSidebar"],
+		auth: true,
+	},
+	{
+		title: "Users Page",
+		path: "/user-management",
+		component: <UserView />,
 		settings: ["AppHeader", "AppSidebar"],
 		auth: true,
 	},
