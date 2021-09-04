@@ -18,15 +18,12 @@ const DateComparator = (
 	if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
 		return 0;
 	}
-
 	if (cellDate < filterLocalDateAtMidnight) {
 		return -1;
 	}
-
 	if (cellDate > filterLocalDateAtMidnight) {
 		return 1;
 	}
-
 	return 1;
 };
 
