@@ -7,6 +7,9 @@ const API_URL = {
 		"verify-email/" + verification_code,
 	RESEND_VERIFICATION_LINK: (email: string): string =>
 		"resend-verification-code/" + btoa(email),
+	USER: {
+		LIST: "user/list",
+	},
 };
 
 export default API_URL;

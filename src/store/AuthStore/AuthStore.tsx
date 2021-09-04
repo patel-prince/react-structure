@@ -92,7 +92,7 @@ export default class AuthStore {
 
 	public fetchAuthUser = (): Promise<any> => {
 		return axios
-			.get(API_URL.ME)
+			.post(API_URL.ME)
 			.then(({ data }) => {
 				this.setUser(data.user);
 				return data;
