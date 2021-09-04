@@ -5,7 +5,6 @@ const DateComparator = (
 	filterLocalDateAtMidnight: Date,
 	cellValue: string
 ): number => {
-	//using moment js
 	const dateAsString = moment(cellValue, Config.dateTimeFormat).format(
 		"DD/MM/YYYY"
 	);
