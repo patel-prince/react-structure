@@ -7,7 +7,7 @@ export type UserListDataProps = {
 	default_ledger_id: number;
 	default_ledger_name: string;
 	deleted_at: string | null;
-	dm_settings: any | null;
+	dm_settings: any;
 	email: string;
 	first_name: string;
 	id: number;
