@@ -1,7 +1,10 @@
 import { NamePath } from "antd/lib/form/interface";
 
 export type ErrorProps = {
-	[key: string]: string[];
+	errors: {
+		[key: string]: string[];
+	};
+	[key: string]: any;
 };
 
 export type FormatedErrorProps = {
